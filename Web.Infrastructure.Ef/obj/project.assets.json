@@ -6409,40 +6409,33 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/damirbekuulubekzatbekzat/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Desktop\\Product\\Product\\Product\\Web\\Web.Infrastructure.Ef\\Web.Infrastructure.Ef.csproj",
+      "projectUniqueName": "/Users/damirbekuulubekzatbekzat/RiderProjects/Web-superfit/Web.Infrastructure.Ef/Web.Infrastructure.Ef.csproj",
       "projectName": "Web.Infrastructure.Ef",
-      "projectPath": "C:\\Users\\user\\Desktop\\Product\\Product\\Product\\Web\\Web.Infrastructure.Ef\\Web.Infrastructure.Ef.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Desktop\\Product\\Product\\Product\\Web\\Web.Infrastructure.Ef\\obj\\",
+      "projectPath": "/Users/damirbekuulubekzatbekzat/RiderProjects/Web-superfit/Web.Infrastructure.Ef/Web.Infrastructure.Ef.csproj",
+      "packagesPath": "/Users/damirbekuulubekzatbekzat/.nuget/packages/",
+      "outputPath": "/Users/damirbekuulubekzatbekzat/RiderProjects/Web-superfit/Web.Infrastructure.Ef/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
+      "UsingMicrosoftNETSdk": false,
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/damirbekuulubekzatbekzat/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\user\\Desktop\\Product\\Product\\Product\\Web\\Web.Domain\\Web.Domain.csproj": {
-              "projectPath": "C:\\Users\\user\\Desktop\\Product\\Product\\Product\\Web\\Web.Domain\\Web.Domain.csproj"
+            "/Users/damirbekuulubekzatbekzat/RiderProjects/Web-superfit/Web.Domain/Web.Domain.csproj": {
+              "projectPath": "/Users/damirbekuulubekzatbekzat/RiderProjects/Web-superfit/Web.Domain/Web.Domain.csproj"
             }
           }
         }
@@ -6451,6 +6444,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -6503,12 +6501,22 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.20, 7.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.20, 7.0.20]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.201/RuntimeIdentifierGraph.json"
       }
     }
   }

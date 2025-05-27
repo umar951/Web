@@ -26,4 +26,5 @@ public class Trainer
     public string Specialization { get; set; }
 
     public List<Schedule> Schedules { get; set; }
+    public int? Experience { get; set; }
 }

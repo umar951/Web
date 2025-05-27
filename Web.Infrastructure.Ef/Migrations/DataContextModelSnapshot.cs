@@ -22,19 +22,25 @@ namespace Web.Infrastructure.Ef.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("ClientSubscription", b =>
+            modelBuilder.Entity("Web.Domain.Entities.Advantage", b =>
                 {
-                    b.Property<int>("ClientsId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    b.Property<int>("SubscriptionsId")
-                        .HasColumnType("integer");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.HasKey("ClientsId", "SubscriptionsId");
+                    b.Property<string>("Caption")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.HasIndex("SubscriptionsId");
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.ToTable("ClientSubscription");
+                    b.HasKey("Id");
+
+                    b.ToTable("Advantages");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Car", b =>
@@ -68,9 +74,6 @@ namespace Web.Infrastructure.Ef.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -118,6 +121,9 @@ namespace Web.Infrastructure.Ef.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("TransactionId")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -126,6 +132,8 @@ namespace Web.Infrastructure.Ef.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Payment", (string)null);
                 });
@@ -141,15 +149,24 @@ namespace Web.Infrastructure.Ef.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int?>("DurationInDays")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
+                    b.Property<int>("PaymentInterval")
+                        .HasColumnType("integer");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int?>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Type")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -186,6 +203,30 @@ namespace Web.Infrastructure.Ef.Migrations
                     b.ToTable("Schedule", (string)null);
                 });
 
+            modelBuilder.Entity("Web.Domain.Entities.Service", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Caption")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("Price")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Services");
+                });
+
             modelBuilder.Entity("Web.Domain.Entities.Subscription", b =>
                 {
                     b.Property<int>("Id")
@@ -194,8 +235,17 @@ namespace Web.Infrastructure.Ef.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ClientId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("DurationDays")
                         .HasColumnType("integer");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -205,7 +255,17 @@ namespace Web.Infrastructure.Ef.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("timestamp with time zone");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Subscriptions");
                 });
@@ -218,12 +278,26 @@ namespace Web.Infrastructure.Ef.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("Experience")
+                        .HasColumnType("integer");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<string>("Specialty")
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Specialization")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
@@ -231,21 +305,6 @@ namespace Web.Infrastructure.Ef.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Trainer", (string)null);
-                });
-
-            modelBuilder.Entity("ClientSubscription", b =>
-                {
-                    b.HasOne("Web.Domain.Entities.Client", null)
-                        .WithMany()
-                        .HasForeignKey("ClientsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Web.Domain.Entities.Subscription", null)
-                        .WithMany()
-                        .HasForeignKey("SubscriptionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Payment", b =>
@@ -256,7 +315,15 @@ namespace Web.Infrastructure.Ef.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Web.Domain.Entities.Product", "Product")
+                        .WithMany("Payments")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Client");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Schedule", b =>
@@ -270,9 +337,37 @@ namespace Web.Infrastructure.Ef.Migrations
                     b.Navigation("Trainer");
                 });
 
+            modelBuilder.Entity("Web.Domain.Entities.Subscription", b =>
+                {
+                    b.HasOne("Web.Domain.Entities.Client", "Client")
+                        .WithMany("Subscriptions")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Web.Domain.Entities.Product", "Product")
+                        .WithMany("Subscriptions")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Web.Domain.Entities.Client", b =>
                 {
                     b.Navigation("Payments");
+
+                    b.Navigation("Subscriptions");
+                });
+
+            modelBuilder.Entity("Web.Domain.Entities.Product", b =>
+                {
+                    b.Navigation("Payments");
+
+                    b.Navigation("Subscriptions");
                 });
 
             modelBuilder.Entity("Web.Domain.Entities.Trainer", b =>

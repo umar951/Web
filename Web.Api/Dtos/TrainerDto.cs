@@ -24,5 +24,6 @@ public class TrainerDto
     [Required(ErrorMessage = "Адистиги талап кылынат")]
     [MaxLength(100, ErrorMessage = "Адистик 100 белгиден ашпашы керек")]
     public string Specialization { get; set; }
+    public int? Experience { get; set; }
 
 }

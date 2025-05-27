@@ -31,7 +31,7 @@ public class ClientController:ControllerBase
             PhoneNumber = dto.PhoneNumber,
             Email = dto.Email,
             
-            RegisterAt = DateTime.UtcNow
+            RegisterAt = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc)
         };
 
         _context.Clients.Add(client);
@@ -64,8 +64,6 @@ public class ClientController:ControllerBase
         client.FullName = dto.FullName;
         client.PhoneNumber = dto.PhoneNumber;
         client.Email = dto.Email;
-        
-
         // Базаны сактайбыз
         await _context.SaveChangesAsync();
 

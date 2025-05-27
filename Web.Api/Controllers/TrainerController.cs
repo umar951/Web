@@ -9,15 +9,14 @@ namespace Web.Api.Controllers;
 [Route("api/[controller]")]
 public class TrainerController:ControllerBase
 {
-    /*private readonly DataContext _context;
+    private readonly DataContext _context;
 
     public TrainerController(DataContext context)
     {
         _context = context;
     }
     
-    
-[HttpPost]
+    [HttpPost]
     public async Task<IActionResult> CreateTrainer([FromBody] TrainerDto dto)
     {
         if (!ModelState.IsValid)
@@ -28,8 +27,9 @@ public class TrainerController:ControllerBase
             FullName = dto.FullName,
             PhoneNumber = dto.PhoneNumber,
             Email = dto.Email,
-            DateOfBirth = dto.DateOfBirth,
-            Specialization = dto.Specialization
+            DateOfBirth = DateTime.SpecifyKind(dto.DateOfBirth, DateTimeKind.Utc),
+            Specialization = dto.Specialization,
+            Experience = dto.Experience,
         };
 
         await _context.Trainers.AddAsync(trainer);
@@ -98,5 +98,5 @@ public class TrainerController:ControllerBase
         }
 
         return Ok(trainer);
-    }*/
+    }
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Web.Infrastructure.Ef")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4637954d37b6b014f7965a350a611c25a255fe24")]
 [assembly: System.Reflection.AssemblyProductAttribute("Web.Infrastructure.Ef")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Web.Infrastructure.Ef")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

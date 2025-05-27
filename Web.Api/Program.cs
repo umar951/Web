@@ -9,9 +9,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors();
 builder.Services .AddDbContext<DataContext>(options =>
 {
-    options.UseNpgsql("Host=localhost;Database=Web;Username=one-system;Password=one-system;Include Error Detail=true");
+    options.UseNpgsql("Host=localhost;Database=Web;Username=root;Password=root;Include Error Detail=true");
 });
 var app = builder.Build();
 
@@ -20,6 +21,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors(o=>o.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 }
 
 app.UseHttpsRedirection();

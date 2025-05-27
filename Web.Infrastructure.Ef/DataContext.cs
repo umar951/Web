@@ -18,6 +18,8 @@ public class DataContext:DbContext
     }
 public DbSet<Car> Cars { get; set; }
 public DbSet<Client>Clients { get; set; }
+public DbSet<Service> Services { get; set; }
+public DbSet<Advantage> Advantages { get; set; }
 public DbSet<Payment> Payments { get; set; }
 public DbSet<Product> Products { get; set; }
 public DbSet<Schedule> Schedules { get; set; }
